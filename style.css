@@ -28,6 +28,26 @@
     color: #0763cc;
     text-decoration: none;
 }
+.error{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #ffcdcd;
+    border: 1px solid #ffb0b0;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 500px;
+    display: none;
+}
+.error .messeage{
+    font-size: 16px;
+}
+.error .close{
+    background-image: url(../images/close.ico);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+}
 .main-form{
     display: flex;
     flex-direction: column;
@@ -39,6 +59,9 @@
 }
 @media screen and (max-width: 600px){
     .main-form{
+        width: 300px;
+    }
+    .error{
         width: 300px;
     }
 }
