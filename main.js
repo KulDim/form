@@ -10,20 +10,33 @@ class Form{
     mainForm(event)
     {
         event.preventDefault()
+        let data = new Object()
         let inputs = this.$form.querySelectorAll('input')
         for (let input of inputs){
-            // переделать
-            if(this.dataValidator(input))
-            {
-                this.errorMessages('Не верные данные что то такое !!!')
-                return 0
-            }
+            data[input.name] = input.value
         }
+        if(!this.dataValidator(data))
+        {
+            this.errorMessages('Incorrect username or password.')
+            // info console
+            console.log('error in dataValidator: ')
+            console.log(data)
+            return false
+        }
+        this.$error.style.display = 'none'
+
+        // info console
+        console.log('send data: ')
+        console.log(data)
     }
-    dataValidator(input)
+    dataValidator(datas)
     {
-        if(input.value.length > 2 && input.value.length > 4) return true
-        return false
+        for (let d in datas)
+        {
+            if(datas[d].length <= 2) return false
+            if(datas[d].length >= 8) return false
+        }
+        return true
     }
     errorMessages(messages)
     {
@@ -34,7 +47,4 @@ class Form{
         })
     }
 }
-
-
-
 new Form('.main-form', '.error')
